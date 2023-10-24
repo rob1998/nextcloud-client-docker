@@ -30,8 +30,6 @@ else
 	echo "[ info run.sh ]: unsync file not found!" | ts "${LOG_DATE_FORMAT}"
 fi
 
-[ "$NC_PATH" ] && echo "[ info run.sh ]: Remote root folder overriden to $NC_PATH" | ts "${LOG_DATE_FORMAT}"
-
 [ "$NC_SILENT" == true ] && echo "[ info run.sh ]: Silent mode enabled" | ts "${LOG_DATE_FORMAT}"
 [ "$NC_HIDDEN" == true ] && echo "[ info run.sh ]: Sync hidden files enabled" | ts "${LOG_DATE_FORMAT}"
 [ "$NC_TRUST_CERT" == true ] && echo "[ info run.sh ]: Trust any SSL certificate" | ts "${LOG_DATE_FORMAT}"
@@ -44,7 +42,6 @@ do
 	[ "$NC_HIDDEN" ] && set -- "$@" "-h"
 	[ "$NC_SILENT" == true ] && set -- "$@" "--silent"
 	[ "$NC_TRUST_CERT" == true ] && set -- "$@" "--trust"
-	[ "$NC_PATH" ] && set -- "$@" "--path" "$NC_PATH"
 	[ "$EXCLUDE" ] && set -- "$@" "--exclude" "$EXCLUDE"
 	[ "$UNSYNCEDFOLDERS" ] && set -- "$@" "--unsyncedfolders" "$UNSYNCEDFOLDERS"
 	set -- "$@" "--non-interactive" "-u" "$NC_USER" "-p" "$NC_PASS" "$NC_SOURCE_DIR" "$NC_URL"
